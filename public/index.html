@@ -1,0 +1,70 @@
+<!DOCTYPE>
+<html ng-app="studentApp">
+<head>
+  <title>Simple demonstration of AngularJS with ReSTful API - AngularCode</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/ngProgress.css">
+<link rel="stylesheet" href="css/toaster.css">
+<style>
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+display: none !important;
+}
+</style>
+</head>
+<body ng-cloak>
+  <div class="container" ng-controller="studentCtrl">
+    <form name="Codenx" novalidate>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Action</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input class="form-control" ng-model="student.name" required="" placeholder="student Name"></td>
+          <td><input class="form-control" ng-model="student.type" placeholder="type"></td>
+          <td><input class="form-control" ng-model="student.email" placeholder="email"></td>
+          <td><input class="form-control" ng-model="student.password" placeholder="password"></td>
+          <td><button class="btn btn-primary" ng-click="add(student)" ng-if="!student._id" type="submit" ng-disabled="!Codenx.$valid">Add Student</button>
+            <div class="btn-group">
+              <button class="btn btn-info" ng-click="update(student)" ng-if="student._id" type="submit">Update</button>
+              <button class="btn" ng-click="deselect()" ng-if="student._id">Clear</button>
+            </div>
+          </td>
+        </tr>
+        <tr ng-repeat="student in students">
+          <td>{{student.name}}</td>
+          <td>{{student.type}}</td>
+          <td>{{student.email}}</td>
+          <td>{{student.password}}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-danger" ng-click="remove(student)">Remove</button>
+              <button class="btn btn-warning" ng-click="edit(student._id)">Edit</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+  </div>
+
+<div data-loading></div>
+<toaster-container toaster-options="{'time-out': 3000, 'close-button':true, 'animation-class': 'toast-top-center'}"></toaster-container>
+
+<script src="js/angular.min.js"></script>
+<script src="js/angular-resource.min.js"></script>
+<script src="js/angular-animate.min.js"></script>
+<script src="js/ngProgress.min.js"></script>
+<script src="js/toaster.js"></script>
+<script src="app.js"></script>
+<script src="StudentController.js"></script>
+</body>
+</html>
